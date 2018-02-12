@@ -1,0 +1,16 @@
+{
+  "name": "nasdaq",
+  "version": "1.0.0",
+  "description": "Nasdaq test assigment",
+  "main": "nasdaq_rest.js",
+  "scripts": {
+    "test": "maintest"
+  },
+  "author": "Laszlo Nyakas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "phantom": "^4.0.12"
+  }
+}
