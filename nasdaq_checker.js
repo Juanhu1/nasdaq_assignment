@@ -4,11 +4,12 @@
  */
 
 
-const INTERVAL_TIME=10*600 ;
+const INTERVAL_TIME=10*60000 ;
 
 const phantom = require('phantom');
 
-setInterval(periodicCheck, INTERVAL_TIME);
+periodicCheck() ; //for the start
+setInterval(periodicCheck, INTERVAL_TIME);    
 
 function putIndexToDatabase(value) {
     var mysql = require('mysql') ;

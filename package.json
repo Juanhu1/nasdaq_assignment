@@ -11,6 +11,10 @@
   "dependencies": {
     "express": "^4.16.2",
     "mysql": "^2.15.0",
-    "phantom": "^4.0.12"
+    "phantom": "^4.0.12",
+    "child_process": "^1.0.2",
+    "gulp": "github:gulpjs/gulp#4.0"        
+  },
+  "devDependencies": {
   }
 }

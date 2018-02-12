@@ -10,34 +10,34 @@
  *          }
  *      if Error, result object:
  *          {
- *              index: -1,
+ *              index: -1,  
  *              error: error msg 
  *          }    
  *          
  *  Database: mySql on localhost, 
- *      table structure:
+ *      table structure: 
  *          CREATE TABLE `indextable` (
  *                `ID` int(11) NOT NULL AUTO_INCREMENT,
  *                `indexvalue` int(11) NOT NULL,
  *                `date` datetime NOT NULL,
  *               PRIMARY KEY (`ID`)
  *          )
- */
+ */  
 
 
-const HTTP_PORT=3000 ;
+const HTTP_PORT=3000 ;   
 const express = require('express') ;
-const app = express() ;
+const app = express() ; 
 
 function getIndexFromDatabase() {
     return new Promise( (resolve,reject)=> {
         var mysql = require('mysql') ;
         var connection = mysql.createConnection({
-          host     : 'localhost',
+          host     : 'localhost',  
           user     : 'root',
           password : '',
           database : 'nasdaq'
-        });
+        });  
         var result=-1 ;
         connection.connect() ;
         connection.query('SELECT indexvalue,date FROM indextable', function (err, rows, fields) {
