@@ -4,6 +4,7 @@ install:
     npm install
 
 Run:
+
     for periodic check (10 minutes) and store the index value into a local mysql database:
         node nasdaq_checker.js
 
@@ -13,8 +14,5 @@ Run:
         usage: localhost:3000/getindex
 
 Run with task runner:
-    if gulp installed with option -g :
-        gulp 
-
-    if no gulp installed:
+   
         npm run gulp
