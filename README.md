@@ -11,3 +11,10 @@ Run:
         node nasdaq_rest.js
 
         usage: localhost:3000/getindex
+
+Run with task runner:
+    if gulp installed with option -g :
+        gulp 
+
+    if no gulp installed:
+        npm run gulp
