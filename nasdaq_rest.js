@@ -76,7 +76,7 @@ app.get('/getindex', function (req, res) {
     catch (err) {
         res.send( { index:-1,
                             error: err
-                })
+                }) ;
     }
 }) ;
 

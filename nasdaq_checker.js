@@ -52,7 +52,7 @@ async function periodicCheck() {
         });    
     }
     catch (err) {
-        console.log("Error in execution:", err)
+        console.log("Error in execution:", err) ;
         window.clearInterval() ;
     }
 } ;
