@@ -20,7 +20,11 @@ function putIndexToDatabase(value) {
       database : 'nasdaq'
     });
 
-    connection.connect() ;
+    connection.connect(function(err) {
+        if (err) {
+            throw err;
+        }
+    }) ;
     var query='INSERT INTO `indextable`(`indexvalue`, `date`) VALUES ('+value+',\''+ (new Date()).toLocaleString()+ '\')' ;
     console.log(query) ;
     connection.query(query, function (err, rows, fields) {
@@ -36,13 +40,19 @@ async function periodicCheck() {
     const page = await instance.createPage();
     const status = await page.open('https://www.nasdaq.com/');
     const content = await page.property('content');
-    page.evaluateJavaScript('function() { return index ; }').then( function(data){
-        if (data!==undefined) {
-            putIndexToDatabase(data) ;
-            console.log(data) ;
-        }
-        instance.exit();
-    }, function(error) {
-        instance.exit();    
-    });    
+    try {
+        page.evaluateJavaScript('function() { return index ; }').then( function(data){
+            if (data!==undefined) {
+                putIndexToDatabase(data) ;
+                console.log(data) ;
+            }
+            instance.exit();
+        }, function(error) {
+            instance.exit();    
+        });    
+    }
+    catch (err) {
+        console.log("Error in execution:", err)
+        window.clearInterval() ;
+    }
 } ;

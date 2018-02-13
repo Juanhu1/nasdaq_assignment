@@ -39,7 +39,11 @@ function getIndexFromDatabase() {
           database : 'nasdaq'
         });  
         var result=-1 ;
-        connection.connect() ;
+        connection.connect(function(err) {
+            if (err) {
+                throw err;
+            }
+        }) ;
         connection.query('SELECT indexvalue,date FROM indextable', function (err, rows, fields) {
           if (err) {
               reject(err) ;
@@ -59,13 +63,21 @@ function getIndexFromDatabase() {
 }
 
 app.get('/getindex', function (req, res) {
-  getIndexFromDatabase().then( function(value) {      
-     res.send( JSON.stringify( value  )) ;
- }, function(error) {
-     res.send( { index:-1,
-                 error: error
-     }) ;
- }); 
+    try {
+        getIndexFromDatabase().then( function(value) {      
+        res.send( JSON.stringify( value  )) ;
+            }, function(error) {
+                res.send( { index:-1,
+                            error: error
+                }) ;
+
+            }); 
+        } 
+    catch (err) {
+        res.send( { index:-1,
+                            error: err
+                })
+    }
 }) ;
 
 app.listen(HTTP_PORT, () => console.log('Listening on port '+HTTP_PORT )) ;
